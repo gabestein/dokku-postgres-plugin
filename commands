@@ -50,9 +50,9 @@ case "$1" in
     fi
     VOLUME="$HOST_DIR:/var/lib/postgresql"
     PASS=$(openssl rand -base64 32|base64)
-    echo $PASS > "$HOST_DIR/postgresql/pwd_$APP"
-    chown dokku: "$HOST_DIR/postgresql/pwd_$APP"
-    chmod 700 "$HOST_DIR/postgresql/pwd_$APP"
+    echo $PASS > "$HOST_DIR/pwd_$APP"
+    chown dokku: "$HOST_DIR/pwd_$APP"
+    chmod 700 "$HOST_DIR/pwd_$APP"
     # Launch container
     docker run -v $VOLUME -name=$CONTAINER_NAME -d \
         -e POSTGRESQL_USER=${APP//[^a-zA-z0-9_]/''} -e POSTGRESQL_PASS=$PASS \
